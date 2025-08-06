@@ -1,0 +1,10 @@
+{
+  "modules": [
+    {
+      "moduleName": "@meteorwallet/sdk",
+      "relativePathToRoot": "../meteor_wallet_sdk/packages/meteor-sdk-v1",
+      "addToPackages": []
+    }
+  ],
+  "exclude": ["node_modules", ".git", ".idea"]
+}
