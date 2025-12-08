@@ -5,11 +5,14 @@ import type {
   SignedMessage,
   SignMessageParams,
   Transaction,
+  SignDelegateActionParams,
 } from "@near-wallet-selector/core";
 import { baseDecode } from "@near-js/utils";
 import {
-  SCHEMA,
   createTransaction,
+  encodeDelegateAction,
+  SCHEMA,
+  type SignedDelegate,
   type Transaction as NearTransaction,
 } from "@near-js/transactions";
 import { JsonRpcProvider } from "@near-js/providers";
@@ -17,6 +20,7 @@ import { KeyPair, type KeyPairString, type PublicKey } from "@near-js/crypto";
 import { Account } from "@near-js/accounts";
 import { KeyPairSigner } from "@near-js/signers";
 import * as borsh from "borsh";
+import { base64 } from "@scure/base";
 
 const DEFAULT_POPUP_WIDTH = 480;
 const DEFAULT_POPUP_HEIGHT = 640;
@@ -209,6 +213,34 @@ export class MyNearWalletConnector {
         publicKey: value?.signedRequest?.publicKey || "",
         signature: value?.signedRequest?.signature || "",
       };
+    });
+  }
+
+  async signDelegateAction({
+    action,
+    callbackUrl,
+    meta,
+  }: SignDelegateActionParams): Promise<[Uint8Array, SignedDelegate]> {
+    const url = callbackUrl || window.location.href;
+
+    if (!url) {
+      throw new Error(`MyNearWallet: CallbackUrl is missing`);
+    }
+
+    const href = new URL(this.walletUrl);
+    href.pathname = "sign-delegate-action";
+    href.searchParams.append("callbackUrl", url);
+    href.searchParams.append(
+      "delegateActionBase64",
+      base64.encode(encodeDelegateAction(action))
+    );
+
+    if (meta != null) {
+      href.searchParams.append("meta", JSON.stringify(meta));
+    }
+
+    return this.handlePopupTransaction(href.toString(), async (value) => {
+      return [];
     });
   }
 

@@ -183,7 +183,7 @@ const MyNearWallet: WalletBehaviourFactory<
     async signDelegateAction(delegateAction) {
       logger.log("signDelegateAction", { delegateAction });
 
-      throw new Error(`Method not supported by ${metadata.name}`);
+      return state.wallet.signDelegateAction({ action: delegateAction });
     },
 
     buildImportAccountsUrl() {

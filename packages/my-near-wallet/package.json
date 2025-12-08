@@ -29,7 +29,8 @@
     "@near-js/providers": "^2.3.0",
     "@near-js/crypto": "^2.3.0",
     "@near-js/utils": "^2.3.0",
-    "borsh": "2.0.0"
+    "borsh": "2.0.0",
+    "@scure/base": "2.0.0"
   },
   "publishConfig": {
     "directory": "../../dist/packages/my-near-wallet"

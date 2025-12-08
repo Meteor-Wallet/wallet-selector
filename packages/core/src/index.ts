@@ -70,6 +70,7 @@ export type {
   AccountImportData,
   SignedMessage,
   SignMessageParams,
+  SignDelegateActionParams,
 } from "./lib/wallet";
 
 export type { FinalExecutionOutcome } from "@near-js/types";

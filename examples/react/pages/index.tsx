@@ -53,7 +53,9 @@ const walletSelectorConfig: SetupParams = {
     }),
     setupMeteorWallet(),
     setupHotWallet(),
-    setupMyNearWallet(),
+    setupMyNearWallet({
+      walletUrl: "https://localhost:1234",
+    }),
     setupLedger(),
     setupSender(),
     setupNightly(),

@@ -9,7 +9,7 @@ import type { ReadOnlyStore } from "../store.types";
 import type { Transaction } from "./transactions.types";
 import type { Modify, Optional } from "../utils.types";
 import type { FinalExecutionOutcome } from "@near-js/types";
-import type { SignedTransaction } from "@near-js/transactions";
+import type { DelegateAction, SignedTransaction } from "@near-js/transactions";
 import type { Signer } from "@near-js/signers";
 import type { Action } from "@near-js/transactions";
 import type { KeyType } from "@near-js/crypto";
@@ -101,6 +101,14 @@ export interface SignedMessage {
 export type SignMessageMethod = {
   signMessage(params: SignMessageParams): Promise<SignedMessage | void>;
 };
+
+export interface SignDelegateActionParams {
+  action: DelegateAction;
+  callbackUrl?: string;
+  meta?: {
+    referrer?: string;
+  };
+}
 
 export interface SignAndSendTransactionParams {
   /**
