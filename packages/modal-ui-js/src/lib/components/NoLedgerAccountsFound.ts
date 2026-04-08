@@ -19,7 +19,7 @@ export async function renderNoLedgerAccountsFound(module: ModuleState<Wallet>) {
         <div class="no-accounts-found-wrapper">
           <p>
             ${translate("modal.ledger.cantFindAnyAccount")}
-            <a href="https://testnet.mynearwallet.com/create" target="_blank">MyNearWallet</a>
+            <a href="https://localhost:1234/create" target="_blank">MyNearWallet</a>
             ${translate("modal.ledger.orConnectAnAnotherLedger")}
           </p>
         </div>

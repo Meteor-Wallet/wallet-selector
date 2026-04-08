@@ -34,7 +34,7 @@ const resolveWalletUrl = (network: Network, walletUrl?: string) => {
     case "mainnet":
       return "https://app.mynearwallet.com";
     case "testnet":
-      return "https://testnet.mynearwallet.com";
+      return "https://localhost:1234";
     default:
       throw new Error("Invalid wallet url");
   }
